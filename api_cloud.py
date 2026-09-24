@@ -123,3 +123,7 @@ if __name__ == "__main__":
         port=port,
         debug=False
     )
+@app.get('/api/debug/routes')
+def debug_routes():
+    return jsonify({'routes': [str(rule) for rule in app.url_map.iter_rules()]})
+
