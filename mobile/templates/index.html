@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>JARVIS MOBILE</title>
+
+<style>
+
+body {
+
+    background: #050505;
+
+    color: #00ffff;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    text-align: center;
+
+    padding: 20px;
+}
+
+h1 {
+
+    text-shadow:
+        0 0 10px #00ffff;
+}
+
+button {
+
+    display: block;
+
+    width: 90%;
+
+    max-width: 400px;
+
+    margin: 15px auto;
+
+    padding: 25px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    background: #00ffff;
+
+    color: #000;
+
+    border: none;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 0 20px #00ffff;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<h1>
+    JARVIS OS
+</h1>
+
+<p>
+    Mobile Command Center
+</p>
+
+
+<button onclick="send('youtube')">
+    OPEN YOUTUBE
+</button>
+
+
+<button onclick="send('google')">
+    OPEN GOOGLE
+</button>
+
+
+<button onclick="send('calculator')">
+    OPEN CALCULATOR
+</button>
+
+
+<script>
+
+function send(action) {
+
+    fetch(
+        "/command/" + action
+    )
+
+    .then(
+        response => response.json()
+    )
+
+    .then(
+        data => alert(data.reply)
+    );
+}
+
+</script>
+
+
+</body>
+
+</html>
