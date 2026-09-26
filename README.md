@@ -7,28 +7,37 @@ J.A.R.V.I.S. is a personal AI assistant built with **Python, React, Flask, Faste
 The system can listen for the wake phrase **"Hey Jarvis"**, convert speech into text, process the request through an intelligent agent, execute supported computer actions or information searches, and respond using voice.
 
 ---
-🖥️ Application Preview
-🎙️ Voice Engine & Wake-Word Detection
+## 🖥️ Application Preview
+
+### 🎙️ Voice Engine & Wake-Word Detection
+
 J.A.R.V.I.S. continuously listens for the configured wake phrase and activates the voice-processing pipeline when the wake word is detected.
 ![JARVIS Voice Engine](assets/jarvis-voice-engine.jpeg)
 
 ---
-🌐 Interactive AI Web Interface
+
+### 🌐 Interactive AI Web Interface
+
 The React-based HUD provides an interactive interface for sending commands and displaying JARVIS responses while communicating with the Flask backend.
 ![JARVIS Web Interface](assets/jarvis-web-interface.jpeg)
 
 ---
-🧠 AI Response & Command Processing
+
+### 🧠 AI Response & Command Processing
+
 J.A.R.V.I.S. processes user commands through the agent and AI pipeline before returning the generated response to the interface.
 ![JARVIS AI Response](assets/jarvis-ai-response.jpeg)
 
 ---
-📱 Mobile Command Center
+
+### 📱 Mobile Command Center
+
 The mobile interface allows supported commands to be triggered remotely through the JARVIS mobile control server.
 ![JARVIS Mobile Control](assets/jarvis-mobile-control.jpeg)
 
 
 ✨ Features
+
 - 🎙️ **Wake-word detection** using OpenWakeWord
 - 🗣️ **Speech-to-text** using Faster-Whisper
 - 🧠 **Local AI processing** using Ollama and `llama3.2:3b`
@@ -48,6 +57,7 @@ The mobile interface allows supported commands to be triggered remotely through 
 ---
 
 # 🏗️ System Architecture
+
 ```text
                          ┌─────────────────────┐
                          │       USER          │
