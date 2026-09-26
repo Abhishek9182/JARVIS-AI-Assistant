@@ -1,4 +1,10 @@
 # 🤖 J.A.R.V.I.S. — AI Voice Assistant & Automation System
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
+![React](https://img.shields.io/badge/React-Vite-61DAFB?logo=react&logoColor=black)
+![Flask](https://img.shields.io/badge/Backend-Flask-000000?logo=flask&logoColor=white)
+![Ollama](https://img.shields.io/badge/AI-Ollama-black)
+![OpenWakeWord](https://img.shields.io/badge/Voice-OpenWakeWord-purple)
+![Whisper](https://img.shields.io/badge/Speech-Faster--Whisper-orange)
 
 > An end-to-end AI voice assistant that combines voice recognition, wake-word detection, local LLM processing, computer automation, web search, and an interactive React-based HUD.
 
