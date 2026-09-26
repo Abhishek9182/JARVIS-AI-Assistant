@@ -58,72 +58,72 @@ The mobile interface allows supported commands to be triggered remotely through 
 
 # 🏗️ System Architecture
 
-```text
-                         ┌─────────────────────┐
-                         │       USER          │
-                         │ Voice / Text Input  │
-                         └──────────┬──────────┘
-                                    │
-                     ┌──────────────┴──────────────┐
-                     │                             │
-                     ▼                             ▼
-              ┌──────────────┐             ┌──────────────┐
-              │ React + Vite │             │ Microphone   │
-              │    HUD       │             │              │
-              └──────┬───────┘             └──────┬───────┘
-                     │                            │
-                     │ HTTP API                   ▼
-                     │                    ┌─────────────────┐
-                     │                    │ OpenWakeWord    │
-                     │                    │ "Hey Jarvis"    │
-                     │                    └────────┬────────┘
-                     │                             │
-                     │                             ▼
-                     │                    ┌─────────────────┐
-                     │                    │ Faster-Whisper  │
-                     │                    │ Speech → Text   │
-                     │                    └────────┬────────┘
-                     │                             │
-                     └──────────────┬──────────────┘
-                                    ▼
-                           ┌─────────────────┐
-                           │   Flask API     │
-                           │     api.py      │
-                           └────────┬────────┘
-                                    │
-                                    ▼
-                           ┌─────────────────┐
-                           │   JarvisAgent   │
-                           └────────┬────────┘
-                                    │
-                  ┌─────────────────┼─────────────────┐
-                  │                 │                 │
-                  ▼                 ▼                 ▼
-           ┌─────────────┐   ┌─────────────┐   ┌─────────────┐
-           │ PC Actions  │   │  Wikipedia  │   │ Web Search  │
-           └─────────────┘   └─────────────┘   └─────────────┘
-                                    │
-                                    ▼
-                           ┌─────────────────┐
-                           │     Ollama      │
-                           │   llama3.2:3b   │
-                           └────────┬────────┘
-                                    │
-                                    ▼
-                           ┌─────────────────┐
-                           │   AI Response   │
-                           └────────┬────────┘
-                                    │
-                                    ▼
-                           ┌─────────────────┐
-                           │     pyttsx3     │
-                           │ Text → Speech   │
-                           └────────┬────────┘
-                                    │
-                                    ▼
-                           ┌─────────────────┐
-                           │ Voice Response  │
-                           └─────────────────┘
+```mermaid
+flowchart TD
+
+    U[👤 User]
+
+    subgraph INPUT["Input Layer"]
+        MIC[🎙️ Microphone]
+        WAKE[🔊 OpenWakeWord<br/>Hey Jarvis]
+        STT[🗣️ Faster-Whisper<br/>Speech → Text]
+    end
+
+    subgraph FRONTEND["Frontend Layer"]
+        HUD[🖥️ React + Vite HUD]
+        THREE[🌐 Three.js / React Three Fiber]
+    end
+
+    subgraph BACKEND["Backend Layer"]
+        API[⚡ Flask API<br/>api.py]
+        AGENT[🧠 JarvisAgent<br/>core/agent.py]
+        BRAIN[🤖 JarvisBrain<br/>core/brain.py]
+    end
+
+    subgraph TOOLS["Tool Layer"]
+        PC[💻 PC Actions]
+        WIKI[📚 Wikipedia]
+        SEARCH[🔎 Web Search]
+    end
+
+    subgraph AI["Local AI"]
+        OLLAMA[🦙 Ollama]
+        MODEL[llama3.2:3b]
+    end
+
+    TTS[🔊 pyttsx3<br/>Text → Speech]
+    SPEAKER[🔈 Computer Speaker]
+
+    U --> MIC
+    MIC --> WAKE
+    WAKE --> STT
+    STT --> AGENT
+
+    U --> HUD
+    HUD --> THREE
+    HUD -->|HTTP / REST API| API
+    API --> AGENT
+
+    AGENT --> PC
+    AGENT --> WIKI
+    AGENT --> SEARCH
+    AGENT --> BRAIN
+
+    BRAIN --> OLLAMA
+    OLLAMA --> MODEL
+    MODEL --> BRAIN
+
+    PC --> API
+    WIKI --> API
+    SEARCH --> API
+    BRAIN --> API
+
+    API --> HUD
+
+    BRAIN --> TTS
+    TTS --> SPEAKER
+```
+                         
 
 🔄 How J.A.R.V.I.S. Works
 1. Wake Word Detection
